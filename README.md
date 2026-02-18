@@ -8,7 +8,6 @@ Desviar dos obstáculos.
 Coletar recursos pelo mapa para desbloquear naves novas.
 ## Vence quem:
 Sobreviver por mais tempo.
-
 # Regras:
 O jogador controla apenas uma nave
 se a nave for atingida por tiros, perde vida 
@@ -19,7 +18,6 @@ a polícia espacial fica mais rápida com o tempo.
 Desviar de obstaculos.
 atirar contra os policiais.
 coletar itens no espaço.
-
 # Personagens:
 ## Protagonista:
 Um piloto fugitivo.
