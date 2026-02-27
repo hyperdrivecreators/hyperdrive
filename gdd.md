@@ -13,12 +13,12 @@ Revision: 0.0.1
 O jogo é baseado na mecânica principal de movimentação e fuga em ambiente espacial. O jogador controla uma nave que deve desviar de obstáculos, escapar das naves policiais e sobreviver pelo maior tempo possível.
 
 - Mecanicas Principais:
-  - Movimentação livre da nave (direita, esqueda, frente.
+  - Movimentação livre da nave (direita, esqueda e frente).
   - Sistema de perseguição, onde as naves policiais seguem o jogador e aumentam a dificuldade com o tempo.
   - Sistema de vida, que diminui ao sofrer colisões ou ataques.
   - Coleta de intem, como os carregadores para atirar.
-  - Sistema de tiros, onde o jogador e as naves poilicias atiram.
-  - Progressão de dificuldade,com aumento da velocidade dos inimigos e surgimento de mais naves policiais. 
+  - Sistema de tiros, onde o jogador e as naves policiais atiram.
+  - Progressão de dificuldade, com aumento da velocidade dos inimigos e surgimento de mais naves policiais. 
     
 ## Plataformas direcionadas
 A plataforma direcionada é o desktop, pois usaremos o joistik para a movimentação da nave.
@@ -28,18 +28,19 @@ Tipo de Monetização
 - Versão gratuita com anúncios opcionais.
 - Microtransações para skins e novas naves.
 - Versão Premium sem anúncios.
+  
   https://docs.google.com/document/d/16Z47IUaKs5Qv8sRv7ucOHr4MjnHR8hq10H9MVTRG_4E/edit?usp=sharing
 
 ## Escopo do Projeto
 Cronograma de Desenvolvimento:
 - Mês 1: Planejamento e conceito.
-- Mês 2: Criaçao do mapa, inicio do jogo.
+- Mês 2: Criação do mapa, inicio do jogo.
 - Mês 3 e 4: desenvolvimento do jogo.
 - mês 5: correção de bugs e aperfeiçoamento do projeto.
 - mês 6: conclusão do jogo.
 
 Custo:
-- Para feira escolar o custo estimado será de R$0 (Uso de ferramentas gratuitas como Unity e github.
+- Para feira escolar o custo estimado será de R$0 (Uso de ferramentas gratuitas como Unity e github).
 - Se fosse comercial o desenvolvimento custaria em torno de R$15.000-R$30.000 (equipe pequena).
 
 Tempo de Desenvolvimento:
@@ -161,5 +162,91 @@ O jogador possui:
     
  O jogo é no modo infinito( quanto mais tempo, mais pontos). Comforme o tempo passa, os policias ficam mais rapidos e a quantidade de naves amuntam.
  
+# Recursos necessários
+## 2D
+ Texturas
+  - Nave principal.
+  - Naves policiais.
+  - Interface.
 
+Texturas de ambiente
+ - Fundo espacial com estrelas.
+ - Asteroides.
+  - Satelites.
+  - Estações espaciais.
+
+ Dados de Mapa 
+  - Mapas de Setores com estrelas.
+  - Layout de obstaculos.
+
+## Som
+- Sons Ambiente
+  - espaço aberto( som leve ambiente sci-fi)
+
+- Sons do Jogador
+  - alerta de dano
+  - som dos tiros
+
+- Sons de Dano
+  - Nave atingida
+  - sistema crítico
+  - Explosão final
+
+- sons dos inimigos 
+  - sirene.
+  - voz de parada.
  
+
+## Código
+
+- Scripts de Personagenm
+  - controle de movimentação.
+  - Sistema de tiro.
+  - Sistema de vida.
+
+- Scripts de Ambiente 
+  - spawn de Obstáculos.
+  - Progressão de Dificuldade.
+  - Sistema de pontuação.
+
+- Scripts de NPC
+  - Sistema de perseguição.
+  - Ataque inimigo.
+  - Desvio de obstáculos.
+
+## Animação
+
+- Animação de Ambiente
+  - Asteroides girando.
+  - Explosões.
+
+- Animação do jogador 
+  - Dano visual da nave.
+  - tiros saindo.
+
+- NPC
+  - Movimento das naves policiais.
+  - Efeitos de Tiro.
+ 
+  # Agendar
+
+- Objeto 1
+  - Tempo: 2 meses.
+  - Marco 1: Nave se movimentando.
+  - Marco 2: Sistema básico de perseguição
+
+- Objeto 2 - Sistema completo
+  - Tempo: 2 meses.
+  - Marco 1: Sistema de vida.
+  - Marco 2: spawn dos inimigos.
+  - Marco 3: dificuldade prograssiva.
+
+- Objeto 3
+  - Tempo: 1 mês.
+  - Marco 1: Implementar sprites.
+  - Marco 2: Inserir efeitos sonoros
+
+- Objeto 4
+  - tempo: 1 mês.
+  - Marco 1: Balanceamento.
+  - Marco 2: Correção de bugs.
