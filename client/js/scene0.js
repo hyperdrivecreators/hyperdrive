@@ -17,6 +17,7 @@ class scene0 extends Phaser.Scene {
     this.shieldRadius = 80;
     this.isTurboPlayer = false;
     this.isShieldPlayer = false;
+    this.margin = 200;
     this.gameOver = false;
   }
 
@@ -113,7 +114,7 @@ class scene0 extends Phaser.Scene {
     // Criar nave inimiga
     this.inimigo = this.physics.add.sprite(800, 300, "policia", 0);
     this.inimigo.setCollideWorldBounds(true);
-    this.inimigo.speed = 200; // Velocidade do inimigo
+    this.inimigo.speed = 20; // Velocidade do inimigo
     this.inimigo.body.setSize(32, 32); // Diminuir área de colisão
     this.inimigo.body.setOffset(16, 16); // Centralizar o body
 
@@ -153,7 +154,17 @@ class scene0 extends Phaser.Scene {
           });
 
           this.enemies.remove(inimigo, true, true);
-          this.spawnEnemy();
+
+          let x = Phaser.Math.Between(
+            0 + this.margin,
+            this.physics.world.bounds.width - this.margin,
+          );
+          let y = Phaser.Math.Between(
+            0 + this.margin,
+            this.physics.world.bounds.height - this.margin,
+          );
+
+          if (this.game.isHost) this.spawnEnemy(x, y);
         }
       },
     );
@@ -258,8 +269,17 @@ class scene0 extends Phaser.Scene {
       this.timer += 1;
       this.textTime.setText(`Time: ${this.timer}`);
 
-      if (this.timer % 10 === 0) {
-        this.spawnEnemy();
+      if (this.timer % 10 === 0 && this.game.isHost) {
+        let x = Phaser.Math.Between(
+          0 + this.margin,
+          this.physics.world.bounds.width - this.margin,
+        );
+        let y = Phaser.Math.Between(
+          0 + this.margin,
+          this.physics.world.bounds.height - this.margin,
+        );
+
+        if (this.game.isHost) this.spawnEnemy(x, y);
       }
     }, 1000);
 
@@ -302,6 +322,10 @@ class scene0 extends Phaser.Scene {
         } catch (e) {
           console.error("Error updating remote player:", e);
         }
+      }
+
+      if (state.enemy) {
+        this.spawnEnemy(state.enemy.x, state.enemy.y);
       }
     });
 
@@ -542,7 +566,16 @@ class scene0 extends Phaser.Scene {
     });
 
     this.enemies.remove(inimigo, true, true);
-    this.spawnEnemy();
+
+    let x = Phaser.Math.Between(
+      0 + this.margin,
+      this.physics.world.bounds.width - this.margin,
+    );
+    let y = Phaser.Math.Between(
+      0 + this.margin,
+      this.physics.world.bounds.height - this.margin,
+    );
+    if (this.game.isHost) this.spawnEnemy(x, y);
   }
 
   updateTurboButtonState() {
@@ -582,31 +615,27 @@ class scene0 extends Phaser.Scene {
     this.turboCooldownText.setText("PRONTO");
   }
 
-  spawnEnemy() {
-    const margin = 200;
-    let x = Phaser.Math.Between(
-      0 + margin,
-      this.physics.world.bounds.width - margin,
-    );
-    let y = Phaser.Math.Between(
-      0 + margin,
-      this.physics.world.bounds.height - margin,
-    );
+  spawnEnemy(x, y) {
+    if (this.game.isHost)
+      this.game.socket.emit("scene0", this.game.room, { enemy: { x, y } });
 
-    if (Phaser.Math.Distance.Between(x, y, this.nave.x, this.nave.y) < margin) {
+    if (
+      Phaser.Math.Distance.Between(x, y, this.nave.x, this.nave.y) <
+      this.activateShieldmargin
+    ) {
       x = Phaser.Math.Between(
-        0 + margin,
-        this.physics.world.bounds.width - margin,
+        0 + this.margin,
+        this.physics.world.bounds.width - this.margin,
       );
       y = Phaser.Math.Between(
-        0 + margin,
-        this.physics.world.bounds.height - margin,
+        0 + this.margin,
+        this.physics.world.bounds.height - this.margin,
       );
     }
 
     const novoInimigo = this.physics.add.sprite(x, y, "policia", 0);
     novoInimigo.setCollideWorldBounds(true);
-    novoInimigo.speed = 200;
+    novoInimigo.speed = 20;
     novoInimigo.body.setSize(32, 32);
     novoInimigo.body.setOffset(16, 16);
     this.enemies.add(novoInimigo);
