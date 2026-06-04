@@ -83,7 +83,7 @@ class GameOver extends Phaser.Scene {
     if (this.game.isHost) {
       const restartButton = this.add
         .text(
-          this.cameras.main.width / 2,
+          this.cameras.main.width / 2 - 160,
           this.cameras.main.height / 2 + 210,
           "Reiniciar jogo",
           {
@@ -105,6 +105,32 @@ class GameOver extends Phaser.Scene {
       );
       restartButton.on("pointerout", () =>
         restartButton.setStyle({ fill: "#00ff00" }),
+      );
+
+      const depositButton = this.add
+        .text(
+          this.cameras.main.width / 2 + 160,
+          this.cameras.main.height / 2 + 210,
+          "Depositar tijolinhos",
+          {
+            fontSize: "28px",
+            fill: "#00bfff",
+            stroke: "#000000",
+            strokeThickness: 5,
+            backgroundColor: "#222222",
+            padding: { x: 20, y: 10 },
+          },
+        )
+        .setOrigin(0.5)
+        .setScrollFactor(0)
+        .setInteractive({ useHandCursor: true })
+        .on("pointerdown", () => this.scene.start("finalFeliz"));
+
+      depositButton.on("pointerover", () =>
+        depositButton.setStyle({ fill: "#ffffff" }),
+      );
+      depositButton.on("pointerout", () =>
+        depositButton.setStyle({ fill: "#00bfff" }),
       );
     } else {
       this.add

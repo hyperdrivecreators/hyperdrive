@@ -5,6 +5,7 @@ import Preloader from "./preloader.js";
 import room from "./room.js";
 import player from "./player.js";
 import GameOver from "./gameover.js";
+import finalfeliz from "./final-feliz.js";
 
 class Game extends Phaser.Game {
   constructor() {
@@ -19,6 +20,7 @@ class Game extends Phaser.Game {
     this.scene.add("room", room);
     this.scene.add("player", player);
     this.scene.add("Gameover", GameOver);
+    this.scene.add("finalFeliz", finalfeliz);
     this.scene.start("TelaInicial"); // Inicia com a tela inicial
 
     if (location.hostname.match(/localhost|127\.0\.0\.1/)) {
